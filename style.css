@@ -1,0 +1,911 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+    background: linear-gradient(135deg, #ffd6e7 0%, #ffe8f2 20%, #d7efff 60%, #cde8ff 100%);
+    color: #222;
+    overflow-x: hidden;
+}
+
+/* PHA LE HIỆU ỨNG NỀN */
+body::before {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    top: 100px;
+    left: -100px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    bottom: 50px;
+    right: -100px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    filter: blur(70px);
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1300px;
+    margin: auto;
+    padding: 8px 20px; /* Giảm đệm trên/dưới từ 20px xuống 8px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 38px;
+    font-weight: 800;
+    color: black;
+    letter-spacing: 12px;
+}/* Bọc logo trong liên kết */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Chỉnh kích thước logo hiển thị trên Header */
+.site-logo {
+    height: 100px; /* Điều chỉnh độ cao logo tùy ý (từ 45px - 60px) */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi di chuột */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: .3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #ff6fb1;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 120px;
+    color: #222;
+}
+
+.hero p {
+    margin-top: 20px;
+    max-width: 700px;
+    font-size: 20px;
+}
+
+/* BANNER */
+.banner {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+}
+
+.banner img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    display: block;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, .45), rgba(0, 0, 0, .05));
+}
+
+.banner-text {
+    position: absolute;
+    z-index: 2;
+    left: 60px;
+    bottom: 60px;
+    color: white;
+    max-width: 650px;
+}
+
+.banner-text h2 {
+    font-size: 58px;
+    margin-bottom: 15px;
+}
+
+.banner-text p {
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+/* CHUNG CHO CÁC SECTION */
+section {
+    padding: 100px 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 42px;
+}
+
+/* THÔNG TIN VỀ CHÚNG TÔI */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.info-card {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+}
+
+/* GALLERY */
+.gallery {
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+/* Kiểu dáng cho dòng miêu tả dưới tiêu đề Gallery */
+.gallery-subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: -30px auto 40px auto; /* Tạo khoảng cách căn chỉnh hợp lý với tiêu đề và hình ảnh */
+    font-size: 19px;
+    font-weight: 500;
+    color: #444;
+    line-height: 1.6;
+}
+
+.gallery img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 25px;
+    transition: .4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* TRANG CHỦ - SẢN PHẨM NỔI BẬT */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.product-card h3,
+.product-card p,
+.product-card span {
+    padding: 15px 20px;
+}
+
+.product-card span {
+    font-weight: bold;
+    color: #ff4f92;
+    font-size: 18px;
+}
+
+/* TRANG DANG SÁCH SẢN PHẨM (sanpham.html) */
+.product-page {
+    padding-top: 180px; /* Tăng từ 150px lên 180px */
+    padding-bottom: 80px;
+}
+
+.product-title {
+    text-align: center;
+    font-size: 52px;
+    margin-bottom: 60px;
+    color: #444;
+}
+
+.product-grid {
+    max-width: 1400px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.showcase-card {
+    background: linear-gradient(135deg, rgba(255, 214, 231, .7), rgba(215, 239, 255, .7));
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, .6);
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    transition: .4s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.showcase-card:hover {
+    transform: translateY(-8px);
+}
+
+.showcase-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.showcase-card h3 {
+    padding-top: 15px;
+    color: #333;
+    font-size: 20px;
+}
+
+.showcase-card .price {
+    font-weight: bold;
+    color: #ff4f92;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* BUTTONS */
+.buy-btn,
+.buy-now-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ffd6e7, #d7efff);
+    transition: .3s;
+    margin: 15px 20px;
+    text-align: center;
+}
+
+.buy-now-btn {
+    margin: 10px 0 0 0;
+}
+
+.buy-btn:hover,
+.buy-now-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* NÚT QUAY LẠI TRANG CHỦ */
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd6e7, #d7efff);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* CONTACT & SOCIAL */
+.social {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .4);
+    backdrop-filter: blur(15px);
+    border-radius: 50px;
+    color: #333;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.social a:hover {
+    background: linear-gradient(135deg, #ffd6e7, #d7efff);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+}
+
+.social i {
+    font-size: 20px;
+}
+
+/* PARTNERS / BACKLINKS */
+.backlinks {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.partner-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    padding: 14px 24px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 214, 231, .8), rgba(215, 239, 255, .8));
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, .7);
+    transition: .3s;
+}
+
+.partner-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+}
+
+.partner-btn i {
+    font-size: 18px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #ffffff55;
+    backdrop-filter: blur(10px);
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 768px) {
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .banner img {
+        height: 400px;
+    }
+
+    .banner-text {
+        left: 25px;
+        bottom: 25px;
+    }
+
+    .banner-text h2 {
+        font-size: 32px;
+    }
+
+    .banner-text p {
+        font-size: 16px;
+    }
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-title {
+        font-size: 38px;
+    }
+}
+/* HERO DECORATION */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff6fb1;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: 75px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #222, #ff6fb1, #222);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-btn {
+    margin-top: 30px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff8fbe, #8fc1ff);
+    box-shadow: 0 10px 25px rgba(255, 143, 190, 0.4);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255, 143, 190, 0.6);
+}
+
+/* ABOUT SECTION DECORATION */
+.title-decor {
+    color: #ff6fb1;
+    margin-right: 8px;
+    font-size: 32px;
+}
+
+.info-card {
+    position: relative;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Hiệu ứng viền gradient phát sáng khi di chuột */
+.info-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #ffb6d9;
+    box-shadow: 0 20px 40px rgba(255, 111, 177, 0.2);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd6e7, #d7efff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #ff4f92;
+    box-shadow: 0 8px 18px rgba(255, 79, 146, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.info-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, #ff4f92, #8fc1ff);
+    color: #fff;
+}
+
+.info-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.info-card p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+}/* ===================================
+   HERO CROCS SECTION STYLE
+====================================== */
+.hero-crocs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 10%;
+    min-height: 85vh;
+    background: radial-gradient(circle at 70% 50%, #ffe4f0 0%, #e8f3ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slogan & Font cá tính */
+.hero-content {
+    flex: 1;
+    max-width: 500px;
+    z-index: 2;
+}
+
+.slogan-title {
+    font-family: 'Fredoka', cursive, sans-serif;
+    font-size: 64px;
+    line-height: 1.1;
+    color: #2b2b2b;
+    margin: 15px 0;
+    text-shadow: 3px 3px 0px rgba(255, 111, 177, 0.3);
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #ff4f92, #8fc1ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 72px;
+    display: inline-block;
+    transform: rotate(-2deg);
+}
+
+.slogan-sub {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Khung chứa ảnh dép & chú thích */
+.hero-image-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-croc-img {
+    width: 100%;
+    max-width: 420px;
+    filter: drop-shadow(0 20px 30px rgba(255, 111, 177, 0.25));
+    animation: crocFloat 4s ease-in-out infinite;
+    transform: rotate(-8deg);
+}
+
+/* Hiệu ứng dép bay nhẹ */
+@keyframes crocFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-15px) rotate(-5deg); }
+}
+
+/* Dòng chú thích xung quanh đôi dép */
+.croc-annotation {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff3b85;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+}
+
+.ann-top-left {
+    top: 10%;
+    left: 5%;
+}
+
+.ann-bottom-right {
+    bottom: 12%;
+    right: 5%;
+}
+
+/* Sticker nhung nhăng xung quanh */
+.sticker {
+    position: absolute;
+    font-size: 32px;
+    animation: stickerPulse 2.5s ease-in-out infinite alternate;
+    user-select: none;
+}
+
+.sticker-1 { top: 5%; right: 20%; animation-delay: 0s; }
+.sticker-2 { bottom: 8%; left: 15%; animation-delay: 0.5s; }
+.sticker-3 { top: 40%; left: -2%; animation-delay: 1s; }
+.sticker-4 { bottom: 35%; right: 0%; animation-delay: 1.5s; }
+
+@keyframes stickerPulse {
+    0% { transform: scale(1) rotate(-10deg); }
+    100% { transform: scale(1.25) rotate(10deg); }
+}/* ===================================
+   HERO CENTERED WITH BACKGROUND CROCS
+====================================== */
+.hero-centered {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 160px 20px 60px 20px; /* Cập nhật padding-top thành 160px */
+    background: radial-gradient(circle at center, #ffffff 0%, #ffe4f0 60%, #e8f3ff 100%);
+    overflow: hidden;
+}
+
+/* KHUNG DÉP & STICKER Ở BACKGROUND */
+.bg-crocs-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Giúp không bị cản trở khi click vào nút */
+}
+
+.bg-croc-img {
+    max-width: 520px;
+    width: 85%;
+    opacity: 0.35; /* Độ ẩn mờ để làm nền cho chữ nổi bật */
+    filter: drop-shadow(0 15px 25px rgba(255, 111, 177, 0.3));
+    transform: rotate(-10deg);
+    animation: crocFloat 5s ease-in-out infinite;
+}
+
+@keyframes crocFloat {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-12px) rotate(-7deg); }
+}
+
+/* NỘI DUNG SLOGAN NẰM TRÊN CÙNG */
+.hero-center-content {
+    position: relative;
+    z-index: 5;
+    max-width: 800px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff4f92;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Font Slogan cá tính & to hơn */
+.slogan-title {
+    font-family: 'Fredoka', cursive, sans-serif;
+    font-size: 76px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #222;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.highlight-text {
+    background: linear-gradient(135deg, #ff4f92, #78b3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transform: rotate(-2deg);
+    filter: drop-shadow(2px 4px 0px rgba(255, 111, 177, 0.2));
+}
+
+.slogan-sub {
+    font-size: 17px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.hero-btn {
+    padding: 15px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6fb1, #8fc1ff);
+    box-shadow: 0 10px 25px rgba(255, 111, 177, 0.4);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(255, 111, 177, 0.6);
+}
+
+/* CHÚ THÍCH XUNG QUANH DÉP (ANNOTATIONS) */
+.croc-annotation {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #ffb6d9;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff3b85;
+    box-shadow: 0 8px 20px rgba(255, 111, 177, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+}
+
+.ann-top-left { top: 18%; left: 12%; }
+.ann-top-right { top: 18%; right: 12%; }
+.ann-bottom-left { bottom: 20%; left: 10%; }
+.ann-bottom-right { bottom: 20%; right: 10%; }
+
+/* STICKER TRANG TRÍ BAY */
+.sticker {
+    position: absolute;
+    font-size: 30px;
+    animation: stickerPulse 2.5s ease-in-out infinite alternate;
+    user-select: none;
+    z-index: 2;
+}
+
+.sticker-1 { top: 10%; left: 28%; animation-delay: 0s; }
+.sticker-2 { top: 12%; right: 28%; animation-delay: 0.5s; }
+.sticker-3 { bottom: 15%; left: 25%; animation-delay: 1s; }
+.sticker-4 { bottom: 15%; right: 25%; animation-delay: 1.5s; }
+.sticker-5 { top: 50%; right: 8%; animation-delay: 0.8s; }
+
+@keyframes stickerPulse {
+    0% { transform: scale(1) rotate(-10deg); }
+    100% { transform: scale(1.25) rotate(10deg); }
+}/* Tăng cỡ chữ mô tả trong khối Tầm nhìn / Sứ mệnh */
+.info-card p {
+    font-size: 18px !important;
+    line-height: 1.7;
+}
+
+/* Tăng cỡ chữ tên sản phẩm & mô tả sản phẩm */
+.product-card h3, 
+.showcase-card h3 {
+    font-size: 24px !important;
+}
+
+.product-card p {
+    font-size: 17px !important;
+    line-height: 1.6;
+}
+
+/* Tăng cỡ chữ giá tiền */
+.showcase-card .price {
+    font-size: 22px !important;
+}
+/* Bổ sung tối ưu riêng cho điện thoại (Màn hình dưới 768px) */
+@media (max-width: 768px) {
+    /* Thu nhỏ logo trên Mobile để không đè menu */
+    .site-logo {
+        height: 50px !important;
+    }
+
+    /* Thu nhỏ menu navigation */
+    nav {
+        gap: 10px;
+    }
+    
+    nav a {
+        font-size: 13px;
+        padding: 4px 6px;
+    }
+
+    /* Thu nhỏ tiêu đề Hero Slogan */
+    .slogan-title {
+        font-size: 38px !important;
+    }
+
+    .highlight-text {
+        font-size: 42px !important;
+    }
+
+    /* Ẩn bớt các nhãn chú thích quanh dép để tránh đè chữ trên màn hình nhỏ */
+    .croc-annotation, .sticker {
+        display: none !important;
+    }
+
+    .product-page {
+        padding-top: 120px;
+    }
+}
